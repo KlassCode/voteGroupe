@@ -48,8 +48,17 @@
           </ul>
         </li> --}}
         <li><a href="#contact" class="mr-2">Contact</a></li>
+        @guest
+          <a class="btn btn-info" role="button" href="{{ route('login') }}">Connexion</a>
+        @endguest
 
-        <button class="btn btn-info" type="button">Connexion</button>
+        @auth
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="btn">Deconnexion</button>
+            </form>
+        @endauth
+
       </ul>
     </nav><!-- .navbar -->
 
