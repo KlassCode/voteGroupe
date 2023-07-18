@@ -2,7 +2,10 @@
 @section('title')
     <title>VoteGroupe | Accueil</title>
 @endsection
-
+@section('header')
+{{--header--}}
+@include('partials._header')
+@endsection
 @section('content')
     <!-- ======= Hero Section ======= -->
   <section id="hero" class="hero">
@@ -938,4 +941,8 @@
     </section><!-- End Contact Section -->
 
   </main><!-- End #main -->
+@endsection
+@section('footer')
+{{--footer--}}
+@include('partials._footer')
 @endsection

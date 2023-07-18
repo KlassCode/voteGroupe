@@ -26,22 +26,17 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
-
-
     @yield('after_styles')
   </head>
 <body id="body">
 
-{{--header--}}
-@include('partials._header')
-
+@yield('header')
 {{--content--}}
 <div>
     @yield('content')
 </div>
 
-{{--footer--}}
-@include('partials._footer')
+@yield('footer')
 <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <div id="preloader"></div>
