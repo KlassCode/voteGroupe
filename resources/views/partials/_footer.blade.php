@@ -5,7 +5,7 @@
     <div class="row gy-4">
       <div class="col-lg-5 col-md-12 footer-info">
         <a href="index.html" class="logo d-flex align-items-center">
-          <span class="footer-title">VoteGroupe</span>
+          <span class="footer-title">VoteConnect</span>
         </a>
         <p>Organisez des élections pour désigner des représentants, prendre des décisions sur les projets de classe ou voter sur des sujets d'importance.</p>
         <div class="social-links d-flex mt-4">
@@ -45,7 +45,7 @@
           Port-au-prince, OUEST<br>
            <br>HAITI<br>
           <strong>Phone:</strong> +509 4759 3979<br>
-          <strong>Email:</strong> votegroupe@gmail.com<br>
+          <strong>Email:</strong> VoteConnect@gmail.com<br>
         </p>
 
       </div>
@@ -55,7 +55,7 @@
 
   <div class="container mt-4">
     <div class="copyright">
-      &copy; Copyright <strong><span>votegroupe</span></strong>. All Rights Reserved
+      &copy; Copyright <strong><span>VoteConnect</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
       <!-- All the links in the footer should remain intact. -->

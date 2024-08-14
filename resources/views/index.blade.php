@@ -1,18 +1,18 @@
 @extends('layouts.app')
 @section('title')
-    <title>VoteGroupe | Accueil</title>
+    <title>VoteConnect | Accueil</title>
 @endsection
-@section('header')
-{{--header--}}
-@include('partials._header')
-@endsection
+
 @section('content')
-    <!-- ======= Hero Section ======= -->
+  {{--header--}}
+  @include('partials._header')
+  
+  <!-- ======= Hero Section ======= --> 
   <section id="hero" class="hero">
     <div class="container position-relative">
       <div class="row gy-5" data-aos="fade-in">
         <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center text-center text-lg-start">
-          <h2>Bienvenue sur <span>VoteGroupe</span></h2>
+          <h2>Bienvenue sur <span>VoteConnect</span></h2>
           <p>Bienvenue sur notre plateforme en ligne dédiée à la création de communautés, à l'organisation de votes et à la 
             gestion des comités de classes pour les étudiants et les écoles !</p>
           <div class="d-flex justify-content-center justify-content-lg-start">
@@ -148,7 +148,7 @@
 
             <div class="stats-item d-flex align-items-center">
               <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Elections</strong> organisees sur Votegroupe</p>
+              <p><strong>Elections</strong> organisees sur VoteConnect</p>
             </div><!-- End Stats Item -->
 
             <div class="stats-item d-flex align-items-center">
@@ -261,7 +261,7 @@
 
         <div class="section-header">
           <h2>Testimonials</h2>
-          <p>lisez ce que pense les utilisateurs qui participent a l'experience VoteGroupe</p>
+          <p>lisez ce que pense les utilisateurs qui participent a l'experience VoteConnect</p>
         </div>
 
         <div class="slides-3 swiper" data-aos="fade-up" data-aos-delay="100">
@@ -874,7 +874,7 @@
 
         <div class="section-header">
           <h2>Contact</h2>
-          <p>Contactez Votegroupe</p>
+          <p>Contactez VoteConnect</p>
         </div>
 
         <div class="row gx-lg-0 gy-4">
@@ -894,7 +894,7 @@
                 <i class="bi bi-envelope flex-shrink-0"></i>
                 <div>
                   <h4>Email:</h4>
-                  <p>votegroupe@gmail.com</p>
+                  <p>VoteConnect@gmail.com</p>
                 </div>
               </div><!-- End Info Item -->
 

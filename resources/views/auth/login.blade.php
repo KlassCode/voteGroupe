@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    Votegroupe | Connexion
+    VoteConnect | Connexion
 @endsection
 @section('content')
 {{-- <div class="container">

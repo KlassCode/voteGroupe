@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title')
     <title>
-        Votegroupe | Nouveau Compte
+        VoteConnect | Nouveau Compte
     </title>
 @endsection
 @section('content')
