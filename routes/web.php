@@ -21,3 +21,6 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/dashboard/{id}', [DashboardController::class, 'show'])->name('dashboard.show');
+Route::get('/election/create', function () {
+    return view('elections.create');
+});
