@@ -11,6 +11,21 @@ class Election extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'code',
+        'status',
+        'open_date',
+        'close_date',
+        'number_of_candidates',
+    ];
+
+
+    const CREATE = "creation";
+    const WAIT_VALIDATION = "En attente";
+    const ONLINE = "En ligne";
+    const CLOSE = "Fermer";
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

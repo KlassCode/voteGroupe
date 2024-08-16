@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ElectionController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,6 +22,5 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/dashboard/{id}', [DashboardController::class, 'show'])->name('dashboard.show');
-Route::get('/election/create', function () {
-    return view('elections.create');
-});
+Route::get('/election/create', [ElectionController::class, 'create'])->name('election.create');
+Route::post('/election/store', [ElectionController::class, 'store'])->name('election.store');
