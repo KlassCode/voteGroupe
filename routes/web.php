@@ -21,6 +21,7 @@ Route::get('/', function () {
 })->name('accueil');
 
 Auth::routes();
-Route::get('/dashboard/{id}', [DashboardController::class, 'show'])->name('dashboard.show');
+Route::get('/dashboard', [DashboardController::class, 'show'])->name('dashboard.show');
+
 Route::get('/election/create', [ElectionController::class, 'create'])->name('election.create');
 Route::post('/election/store', [ElectionController::class, 'store'])->name('election.store');

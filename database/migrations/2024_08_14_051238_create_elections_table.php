@@ -14,7 +14,7 @@ class CreateElectionsTable extends Migration
     public function up()
     {
         Schema::create('elections', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string("code")->unique();
             $table->string("title")->unique();
             $table->date("open_date");

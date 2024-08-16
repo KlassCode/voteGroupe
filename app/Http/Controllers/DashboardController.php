@@ -8,6 +8,7 @@ class DashboardController extends Controller
 {
     public function show()
     {
+        var_dump(auth()->user());
         return view('dashboard.show');
     }
 }
