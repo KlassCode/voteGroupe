@@ -1,4 +1,7 @@
 @extends('layouts.app_dashboard')
+@section('title')
+<title>Creation Election | VoteConnect</title>
+@endsection
 @section('content')
 <div class="layout-wrapper layout-content-navbar">
     <div class="layout-container">

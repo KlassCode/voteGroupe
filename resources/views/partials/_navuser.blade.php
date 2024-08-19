@@ -53,7 +53,7 @@ id="layout-navbar"
                 </div>
                 </div>
                 <div class="flex-grow-1">
-                <span class="fw-semibold d-block">John Doe</span>
+                <span class="fw-semibold d-block">{{Auth::user()->name}}</span>
                 <small class="text-muted">Organizer</small>
                 </div>
             </div>
@@ -87,9 +87,18 @@ id="layout-navbar"
             <div class="dropdown-divider"></div>
         </li>
         <li>
-            <a class="dropdown-item" href="auth-login-basic.html">
-            <i class="bx bx-power-off me-2"></i>
-            <span class="align-middle">Log Out</span>
+            <a class="dropdown-item" href="#">
+            
+                <span class="align-middle">
+                    <i class="bx bx-power-off me-2"></i>
+                    <form method="POST" action="{{ route('logout') }}" class="d-inline-block">
+                        @csrf
+                        <button type="submit" class="btn">Deconnexion</button>
+                    </form>
+                    
+                </span>
+           
+            
             </a>
         </li>
         </ul>

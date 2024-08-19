@@ -1,4 +1,7 @@
 @extends('layouts.app_dashboard')
+@section('title')
+<title>Dashboard | VoteConnect</title>
+@endsection
 @section('content')
 <!-- Layout wrapper -->
 <div class="layout-wrapper layout-content-navbar">
@@ -17,13 +20,13 @@
                         <div class="d-flex align-items-end row">
                           <div class="col-sm-7">
                             <div class="card-body">
-                              <h5 class="card-title text-primary">Congratulations John! 🎉</h5>
+                              <h5 class="card-title text-primary">Congratulations {{$user->name}}! 🎉</h5>
                               <p class="mb-4">
                                 You have done <span class="fw-bold">72%</span> more sales today. Check your new badge in
                                 your profile.
                               </p>
     
-                              <a href="javascript:;" class="btn btn-sm btn-outline-primary">Organize</a>
+                              <a href="{{route('election.create',$user->id)}}" class="btn btn-sm btn-outline-primary">Organize</a>
                             </div>
                           </div>
                           <div class="col-sm-5 text-center text-sm-left">
