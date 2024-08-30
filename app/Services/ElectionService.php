@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Election;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Expr\Cast\String_;
 use App\Repositories\ElectionRepository;
 
@@ -22,9 +23,9 @@ class ElectionService
 
         $generateCode = $this->codeGeneration();
         $dataToSave = array_merge($basicInformations, [
-            "code" => $generateCode,
+            "code" => strtoupper($generateCode),
             "status" => Election::CREATE,
-            "user_id" => intval("1"),
+            "user_id" => Auth::user()->id,
         ]);
         return $this->electionRepository->saveElection($dataToSave);
     }
@@ -32,5 +33,10 @@ class ElectionService
     public function codeGeneration()
     {
         return Str::random(6);
+    }
+
+    public function searchElectionWithCode($codeElection)
+    {
+        return $this->electionRepository->findElectionByCode($codeElection);
     }
 }

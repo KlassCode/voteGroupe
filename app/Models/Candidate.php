@@ -9,6 +9,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Candidate extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'fullname',
+        'email',
+        'number_of_votes',
+        'election_id'
+    ];
 
     public function election(): BelongsTo
     {

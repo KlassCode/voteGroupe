@@ -10,28 +10,28 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="{{asset('assets/img/favicon.png')}}" rel="icon">
+  <link href="{{asset('assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+    <link rel="stylesheet" href="{{asset('assets/vendor/fonts/boxicons.css')}}" />
 
-    <link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="../assets/css/demo.css" />
+    <link rel="stylesheet" href="{{asset('assets/vendor/css/core.css')}}" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="{{asset('assets/vendor/css/theme-default.css')}}" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="{{asset('assets/css/demo.css')}}" />
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="{{asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')}}" />
 
-    <link rel="stylesheet" href="../assets/vendor/libs/apex-charts/apex-charts.css" />
+    <link rel="stylesheet" href="{{asset('assets/vendor/libs/apex-charts/apex-charts.css')}}" />
 
-    <script src="../assets/vendor/js/helpers.js"></script>
+    <script src="{{asset('assets/vendor/js/helpers.js')}}"></script>
 
-    <script src="../assets/js/config.js"></script>
+    <script src="{{asset('assets/js/config.js')}}"></script>
     @yield('after_styles')
   </head>
 <body id="body">
@@ -49,7 +49,7 @@
           document.write(new Date().getFullYear());
         </script>
         , made with ❤️ by
-        <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
+        <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">Forex Code</a>
       </div>
       <div>
         <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
@@ -85,25 +85,25 @@
 </div>
 
   <!-- Vendor JS Files -->
-  <script src="../assets/vendor/libs/jquery/jquery.js"></script>
-  <script src="../assets/vendor/libs/popper/popper.js"></script>
-  <script src="../assets/vendor/js/bootstrap.js"></script>
-  <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+  <script src="{{asset('assets/vendor/libs/jquery/jquery.js')}}"></script>
+  <script src="{{asset('assets/vendor/libs/popper/popper.js')}}"></script>
+  <script src="{{asset('assets/vendor/js/bootstrap.js')}}"></script>
+  <script src="{{asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js')}}"></script>
 
-  <script src="../assets/vendor/js/menu.js"></script>
+  <script src="{{asset('assets/vendor/js/menu.js')}}"></script>
   <!-- endbuild -->
 
   <!-- Vendors JS -->
-  <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
+  <script src="{{asset('assets/vendor/libs/apex-charts/apexcharts.js')}}"></script>
 
   <!-- Main JS -->
-  <script src="../assets/js/script.js"></script>
+  <script src="{{asset('assets/js/script.js')}}"></script>
 
   <!-- Page JS -->
-  <script src="../assets/js/dashboards-analytics.js"></script>
+  <script src="{{asset('assets/js/dashboards-analytics.js')}}"></script>
 
   <!-- Template Main JS File -->
-  <script src="assets/js/script.js"></script>
+  <script src="{{asset('assets/js/script.js')}}"></script>
 
 @stack('after_script')
 </body>

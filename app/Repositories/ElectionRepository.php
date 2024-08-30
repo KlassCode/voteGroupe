@@ -18,7 +18,7 @@ class ElectionRepository
     public function saveElection($dataToSave)
     {
         Log::info(`ElectionRepository::saveElection()`);
-        var_dump($dataToSave);
+        // var_dump($dataToSave);
         return $this->model->create([
             'code' => $dataToSave['code'],
             'title' => $dataToSave['title'],
@@ -28,5 +28,11 @@ class ElectionRepository
             'status' => $dataToSave['status'],
             'user_id' => $dataToSave['user_id'],
         ]);
+    }
+
+    public function findElectionByCode($code)
+    {
+        Log::info("ElectionRepository::findElectionBycode()");
+        return $this->model->where('code', '=', $code)->first();
     }
 }

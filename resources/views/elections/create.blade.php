@@ -92,6 +92,7 @@
                       <h5 class="mb-0">Information Candidats</h5>
                       <small class="text-muted float-end">Renseignements des candidats</small>
                     </div>
+
                     <div class="card-body">
                       <h5 class="card-header">Inscrivez vos Candidats</h5>
                       <div class="row">
@@ -234,6 +235,7 @@
                         <!--/ Custom content with heading -->
                       </div>
                     </div>
+                   
                     
                   </div>
                 </div>

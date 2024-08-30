@@ -18,6 +18,7 @@ class Election extends Model
         'open_date',
         'close_date',
         'number_of_candidates',
+        'user_id',
     ];
 
 

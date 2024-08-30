@@ -28,13 +28,6 @@ class ElectionController extends Controller
             'number_of_candidates' => 'required',
         ])->validate();
         $election = $this->electionService->saveBasicElectionInformation($request->all());
-
-
-        // $offer = $this->service->addNameOffer($request->all());
-        // if($offer!=null){
-        //     return response()->json([
-        //         "message"=>"success"
-        //     ]);
-        // }
+        return redirect()->route('candidate.create', ['code' => $election->code]);
     }
 }

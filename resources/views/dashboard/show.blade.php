@@ -26,7 +26,7 @@
                                 your profile.
                               </p>
     
-                              <a href="{{route('election.create',$user->id)}}" class="btn btn-sm btn-outline-primary">Organize</a>
+                              <a href="{{route('election.create')}}" class="btn btn-sm btn-outline-primary">Organize</a>
                             </div>
                           </div>
                           <div class="col-sm-5 text-center text-sm-left">
