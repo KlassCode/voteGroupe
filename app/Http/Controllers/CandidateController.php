@@ -18,13 +18,6 @@ class CandidateController extends Controller
     }
 
 
-    public function create($code)
-    {
-        set_time_limit(8000000);
-        $election = $this->electionService->searchElectionWithCode($code);
-        return view('candidates.create', compact('election'));
-    }
-
     public function store(Request $request)
     {
 

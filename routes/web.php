@@ -3,6 +3,7 @@
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ElectionController;
+use App\Models\Election;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,5 +28,5 @@ Route::get('/dashboard', [DashboardController::class, 'show'])->name('dashboard.
 Route::get('/election/create', [ElectionController::class, 'create'])->name('election.create');
 Route::post('/election/store', [ElectionController::class, 'store'])->name('election.store');
 
-Route::get('/election/{code}/candidate/create', [CandidateController::class, 'create'])->name('candidate.create');
+Route::get('/election/{code}/edit', [ElectionController::class, 'edit'])->name('election.edit');
 Route::post('/candidate/store', [CandidateController::class, 'store'])->name('candidate.store');

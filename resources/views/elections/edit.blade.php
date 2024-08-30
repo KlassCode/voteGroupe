@@ -104,26 +104,77 @@
                           </div>
                         </div>
                       </div>
-                      <div class="row">
-                        <!-- Custom content with heading -->
-                        <div class="col-lg-12 mb-4 mb-xl-0">
-                          <small class="text-light fw-semibold">Candidats</small>
-                          <div class="mt-3">
-                            <div class="row">
-                              
-                              
-                              {{-- <div class="col-md-4 col-12 mb-3 mb-md-0">
-                                
-                              </div>
-                              <div class="col-md-8 col-12">
-                                
-                              </div> --}}
+                       <!-- Custom content with heading -->
+                       <div class="col-lg-12 mb-4 mb-xl-0">
+                        <small class="text-light fw-semibold">Candidats</small>
+                        <div class="mt-3">
+                          <!-- Bootstrap Table with Header - Light -->
+                          <div class="table-responsive text-nowrap">
+                            <table class="table">
+                              <thead class="table-light">
+                                <tr>
+                                  <th>Nom Candidat</th>
+                                  <th>Status</th>
+                                  <th>Actions</th>
+                                </tr>
+                              </thead>
+                              <tbody class="table-border-bottom-0">
+                                @forelse ( $election->candidates as $candidate)
+                                <tr>
+                                  <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{$candidate->fullname}}</strong></td>
+                                  
+                                  <td><span class="badge bg-label-primary me-1">Active</span></td>
+                                  <td>
+                                    <span class="d-flex">
+                                        <a class="dropdown-item open-ModifyCandidateDialog" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#modifyCandidat" data-id={{$candidate->id}} data-fullname="{{$candidate->fullname}}" data-email="{{$candidate->email}}"
+                                        ><i class="bx bx-edit-alt me-1"></i></a
+                                        >
+                                          <a class="dropdown-item" href="javascript:void(0);"
+                                          ><i class="bx bx-trash me-1"></i></a
+                                        >
+                                        </span>
+                                  </td>
+                                  
+                                </tr>
+                                @empty
+                                  <p>Pas de candidats. Ajouter</p>
+                                @endforelse
+                                {{-- Modal modify Candidates --}}
+                      <div class="modal fade" id="modifyCandidat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Modification du candidat</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <form id="candidate-modification-form">
+                                @csrf
+                                <input type="hidden" id="candidate_id" name="candidate_id" value="">
+                                  <div class="mb-3">
+                                    <label class="form-label" for="basic-default-fullname">Nom Complet</label>
+                                    <input type="text" class="form-control" name="fullnamem" id="fullnamem" value="" placeholder="Nom et Prenom Candidat" />
+                                  </div>
+                                  <div class="mb-3">
+                                    <label class="form-label" for="basic-default-email">Email</label>
+                                    <input type="mail" class="form-control" name="emailm" id="emailm" value="" placeholder="Email du Candidat" />
+                                  </div>
+
+                                <button type="button" class="btn btn-primary" id="btn-save-candidat">Modifier</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              </form>
                             </div>
                           </div>
                         </div>
-                        
-                        <!--/ Custom content with heading -->
                       </div>
+                              </tbody>
+                            </table>
+                          </div>
+                         
+                      
+                        </div>
+                      </div>
+                      
                     </div>
                     
                   </div>
@@ -141,7 +192,17 @@
 @push('after_script')
   
   <script type="text/javascript">
-      
+
+    $(document).on("click", ".open-ModifyCandidateDialog", function () {
+    let myCadidateName = $(this).data('fullname');
+    let myCandidateEmail = $(this).data('email');
+    let myCandidateId = $(this).data('id');
+    
+    $("#candidate_id").val(myCandidateId);
+    $("#emailm").val(myCandidateEmail);
+    $("#fullnamem").val(myCadidateName);
+    
+    });      
       
       const addCandidate = () => {
             console.info ('Function::addCandidate()');

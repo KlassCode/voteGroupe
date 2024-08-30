@@ -28,6 +28,13 @@ class ElectionController extends Controller
             'number_of_candidates' => 'required',
         ])->validate();
         $election = $this->electionService->saveBasicElectionInformation($request->all());
-        return redirect()->route('candidate.create', ['code' => $election->code]);
+        return redirect()->route('election.edit', ['code' => $election->code]);
+    }
+
+    public function edit($code)
+    {
+        set_time_limit(8000000);
+        $election = $this->electionService->searchElectionWithCode($code);
+        return view('elections.edit', compact('election'));
     }
 }
