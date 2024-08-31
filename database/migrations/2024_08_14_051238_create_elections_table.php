@@ -22,6 +22,7 @@ class CreateElectionsTable extends Migration
             $table->integer("number_of_candidates");
             $table->integer("total_votes_received")->default(0);
             $table->string("status");
+            $table->softDeletes();
 
             $table->foreignId('user_id')->constrained()
                 ->onUpdate('cascade')

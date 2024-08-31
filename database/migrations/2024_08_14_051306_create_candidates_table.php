@@ -18,6 +18,8 @@ class CreateCandidatesTable extends Migration
             $table->string("fullname");
             $table->string("email")->unique();
             $table->integer("number_of_votes");
+            $table->boolean('participation_confirm')->default(false);
+            $table->softDeletes();
 
             $table->foreignId('election_id')->constrained()
                 ->onUpdate('cascade')
