@@ -21,4 +21,9 @@ class CandidateService
     {
         return $this->candidateRepository->saveElectionCandidate($data);
     }
+
+    public function updateCandidateInformation($dataUpdate)
+    {
+        return $this->candidateRepository->updateCandidate($dataUpdate);
+    }
 }

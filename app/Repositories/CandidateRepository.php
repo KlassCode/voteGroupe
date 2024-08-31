@@ -32,4 +32,10 @@ class CandidateRepository
         Log::info("ElectionRepository::findElectionBycode()");
         return $this->model->where('code', '=', $code)->first();
     }
+
+    public function updateCandidate($dataToUpdate)
+    {
+        Log::info("CandidateRepository::updateCandidate()");
+        return $this->model->where('id', $dataToUpdate['candidate_id'])->update(['fullname' => $dataToUpdate['fullnamem'], 'email' => $dataToUpdate['emailm']]);
+    }
 }

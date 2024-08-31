@@ -160,7 +160,7 @@
                                     <input type="mail" class="form-control" name="emailm" id="emailm" value="" placeholder="Email du Candidat" />
                                   </div>
 
-                                <button type="button" class="btn btn-primary" id="btn-save-candidat">Modifier</button>
+                                <button type="button" class="btn btn-primary" id="btn-modify-candidat">Modifier</button>
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                               </form>
                             </div>
@@ -193,17 +193,45 @@
   
   <script type="text/javascript">
 
-    $(document).on("click", ".open-ModifyCandidateDialog", function () {
-    let myCadidateName = $(this).data('fullname');
-    let myCandidateEmail = $(this).data('email');
-    let myCandidateId = $(this).data('id');
-    
-    $("#candidate_id").val(myCandidateId);
-    $("#emailm").val(myCandidateEmail);
-    $("#fullnamem").val(myCadidateName);
-    
-    });      
+      $(document).on("click", ".open-ModifyCandidateDialog", function () {
+      let myCadidateName = $(this).data('fullname');
+      let myCandidateEmail = $(this).data('email');
+      let myCandidateId = $(this).data('id');
       
+      $("#candidate_id").val(myCandidateId);
+      $("#emailm").val(myCandidateEmail);
+      $("#fullnamem").val(myCadidateName);
+      
+      });      
+      const updateCandidateInformation = () => {
+        console.info('Function::updateCandidateInformation()');
+        // const candidateId = $("#candidate_id").val();
+        // const candidateEmail = $("#emailm").val();
+        // const candidateFullname = $("#fullnamem").val();
+        const updateForm = document.getElementById('candidate-modification-form');
+        const formData = new FormData(updateForm);
+        formData.append("election_id",jQuery('#election_id').val());
+        formData.append("_token","{{ csrf_token() }}");
+        formData.append("_method","PUT");
+        $.ajax({
+          type: "POST",
+          url: "{{route('candidate.update')}}",
+          processData: false,
+          contentType: false,
+          data : formData,
+          dataType : 'json',
+          beforeSend: function(){},
+          success: function(data){
+            if (data.message == 'success') {
+              location.reload();
+            } else {
+              
+            }
+          },
+          complete: function(){}
+        });
+
+      }
       const addCandidate = () => {
             console.info ('Function::addCandidate()');
             const myForm = document.getElementById('add-candidate-form');
@@ -214,9 +242,8 @@
             formData.append("election_id",jQuery('#election_id').val());
             formData.append("fullname",jQuery('#fullname').val());
             formData.append("email",jQuery('#email').val());
-            const ajaxUrl = "{{route('candidate.store')}}";
             
-            jQuery.ajax({
+            $.ajax({
                 type: "POST",
                 url:ajaxUrl,
                 processData: false,
@@ -245,6 +272,7 @@
                 },
             });
         }
+        $('#btn-modify-candidat').click((e)=>updateCandidateInformation());
         $("#btn-save-candidat").click((e)=>addCandidate());
 
   </script>
