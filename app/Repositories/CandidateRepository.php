@@ -38,4 +38,9 @@ class CandidateRepository
         Log::info("CandidateRepository::updateCandidate()");
         return $this->model->where('id', $dataToUpdate['candidate_id'])->update(['fullname' => $dataToUpdate['fullnamem'], 'email' => $dataToUpdate['emailm']]);
     }
+    public function deleteCandidate($id)
+    {
+        Log::info("CandidateRepository::deleteCandidate()");
+        return $this->model->where('id', $id)->delete();
+    }
 }

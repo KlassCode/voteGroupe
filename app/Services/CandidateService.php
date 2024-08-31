@@ -26,4 +26,8 @@ class CandidateService
     {
         return $this->candidateRepository->updateCandidate($dataUpdate);
     }
+    public function removeCandidate($candidateId)
+    {
+        return $this->candidateRepository->deleteCandidate($candidateId);
+    }
 }

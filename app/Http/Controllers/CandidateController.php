@@ -54,4 +54,10 @@ class CandidateController extends Controller
             ]);
         }
     }
+    public function delete($id)
+    {
+        if ($this->candidateService->removeCandidate($id)) {
+            return redirect()->back();
+        }
+    }
 }

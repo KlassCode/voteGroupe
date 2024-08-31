@@ -143,15 +143,19 @@
                                 <tr>
                                   <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{$candidate->fullname}}</strong></td>
                                   
-                                  <td><span class="badge bg-label-primary me-1">Active</span></td>
+                                  <td><span class="badge bg-label-danger me-1">Pas Confirm</span></td>
                                   <td>
                                     <span class="d-flex">
                                         <a class="dropdown-item open-ModifyCandidateDialog" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#modifyCandidat" data-id={{$candidate->id}} data-fullname="{{$candidate->fullname}}" data-email="{{$candidate->email}}"
                                         ><i class="bx bx-edit-alt me-1"></i></a
                                         >
-                                          <a class="dropdown-item" href="javascript:void(0);"
-                                          ><i class="bx bx-trash me-1"></i></a
-                                        >
+                                        <form action="{{route('candidate.delete',$candidate->id)}}" method="post">
+                                          @csrf
+                                          @method('delete')
+                                          <button type="submit" class="dropdown-item"
+                                          ><i class="bx bx-trash me-1"></i></button>
+                                        </form>
+                                          
                                         </span>
                                   </td>
                                   
