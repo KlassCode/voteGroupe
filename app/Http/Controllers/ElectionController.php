@@ -25,7 +25,7 @@ class ElectionController extends Controller
             'title' => 'required',
             'open_date' => 'required',
             'close_date' => 'required',
-            'number_of_candidates' => 'required',
+            'number_of_candidates' => 'required|integer|between:1,10',
         ])->validate();
         $election = $this->electionService->saveBasicElectionInformation($request->all());
         return redirect()->route('election.edit', ['code' => $election->code]);
@@ -44,11 +44,11 @@ class ElectionController extends Controller
             'title' => 'required',
             'open_date' => 'required',
             'close_date' => 'required',
-            'number_of_candidates' => 'required',
+            'number_of_candidates' => 'required|integer|between:1,10',
         ])->validate();
 
         if ($this->electionService->updateElectionInformation($electionId, $request->all())) {
-            return $this->edit($request->input('code'));
+            return redirect()->route('election.edit', ['code' => $request->input('code')]);
         }
     }
 }
