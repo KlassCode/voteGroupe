@@ -39,4 +39,13 @@ class ElectionService
     {
         return $this->electionRepository->findElectionByCode($codeElection);
     }
+
+    public function updateElectionInformation($electionId, $dataToUpdate)
+    {
+        $election = $this->searchElectionWithCode($dataToUpdate["code"]);
+        if ($election->candidates->count() > (int) $dataToUpdate["number_of_candidates"]) {
+            $dataToUpdate["number_of_candidates"] = $election->candidates->count();
+        }
+        return $this->electionRepository->updateElection($electionId, $dataToUpdate);
+    }
 }

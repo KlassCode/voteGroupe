@@ -35,4 +35,15 @@ class ElectionRepository
         Log::info("ElectionRepository::findElectionBycode()");
         return $this->model->where('code', '=', $code)->first();
     }
+
+    public function updateElection($electionId, $data)
+    {
+        Log::info("ElectionRepository::updateElection()");
+        return $this->model->where('id', $electionId)->update([
+            "title" => $data["title"],
+            "open_date" => $data["open_date"],
+            "close_date" => $data["close_date"],
+            "number_of_candidates" => $data["number_of_candidates"],
+        ]);
+    }
 }

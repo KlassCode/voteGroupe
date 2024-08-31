@@ -11,12 +11,19 @@
            <!-- Content wrapper -->
           <div class="content-wrapper">
             <!-- Content -->
-
+            
             <div class="container-xxl flex-grow-1 container-p-y">
               <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Organiser Election</span></h4>
-
+              @if ($election->number_of_candidates==$election->candidates->count())
+                <div class="alert alert-info alert-dismissible" role="alert">
+                  <div>Felicitations 🎉, Tu as ajoute <span class="fw-bold">100%</span> de tes candidats. Un email a été envoyé à chaque candidat pour confirmer leur présence.</div>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              @endif
+              
               <!-- Basic Layout -->
               <div class="row">
+              
                 <div class="col-xl">
                   <div class="card mb-4">
                     <div class="card-header d-flex justify-content-between align-items-center">
@@ -25,24 +32,32 @@
                     </div>
                     <div class="card-body">
                       {{-- Form that create the election --}}
-                      <form id="election-form" method="POST" action="{{route('election.store')}}">
+                      <form id="election-form" method="POST" action="{{route('election.update',$election->id)}}">
                         @csrf
+                        @method("PUT")
+                        <input type="hidden" name="code" id="election_code" value="{{$election->code}}"/>
                         <div class="mb-3">
                           <label class="form-label" for="basic-default-title">Titre</label>
-                          <input type="text" class="form-control" name="title" id="basic-default-title" value="{{$election->title}}" placeholder="Titre Election" />
-                          
+                          <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="basic-default-title" value="{{$election->title}}" placeholder="Titre Election" />
+                          @error('title')
+                              <div class="text-danger">{{ $message }}</div>
+                          @enderror
 
                         </div>
                        
                         <div class="mb-3">
                           <label class="form-label" for="basic-default-opendate">Date Ouverture</label>
-                          <input type="date" class="form-control" name ="open_date" id="basic-default-opendate" value="{{$election->open_date}}" placeholder="Date de debut de l'election" />
-                        
+                          <input type="date" class="form-control @error('open_date') is-invalid @enderror" name ="open_date" id="basic-default-opendate" value="{{$election->open_date}}" placeholder="Date de debut de l'election" />
+                          @error('open_date')
+                              <div class="text-danger">{{ $message }}</div>
+                          @enderror
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-closedate">Date Fermeture</label>
-                            <input type="date" class="form-control" name="close_date" id="basic-default-closedate" value="{{$election->close_date}}" placeholder="Date fermetture des votes" />
-
+                            <input type="date" class="form-control @error('close_date') is-invalid @enderror" name="close_date" id="basic-default-closedate" value="{{$election->close_date}}" placeholder="Date fermetture des votes" />
+                            @error('close_date')
+                              <div class="text-danger">{{ $message }}</div>
+                            @enderror
                           </div>
                         
                         <div class="mb-3">
@@ -50,12 +65,14 @@
                           <input
                             type="number"
                             id="basic-default-nbcandidates"
-                            class="form-control phone-mask"
+                            class="form-control phone-mask @error('number_of_candidates') is-invalid @enderror"
                             name="number_of_candidates"
                             value="{{$election->number_of_candidates}}"
                             placeholder="Le nombre de participants"
                           />
-                          
+                          @error('number_of_candidates')
+                              <div class="text-danger">{{ $message }}</div>
+                          @enderror
                         </div>
                         <button type="submit" class="btn btn-primary disable">Enregistrer</button>
                       </form>
@@ -73,7 +90,10 @@
                       <h5 class="card-header">Inscrivez vos Candidats 
                         <span>
                           {{-- <button type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal" id="#addcandidat" class=" --}}
-                          <button type="button" class="btn btn-success d-inline-flex float-end" data-bs-toggle="modal" data-bs-target="#addCandidat">Ajouter un candidats</button>
+                          @if ($election->number_of_candidates>$election->candidates->count())
+                            <button type="button" class="btn btn-success d-inline-flex float-end" data-bs-toggle="modal" data-bs-target="#addCandidat">Ajouter un candidats</button>    
+                          @endif
+                          
                         </span>
                       </h5>
                       {{-- Modal add Candidates --}}
@@ -140,33 +160,33 @@
                                   <p>Pas de candidats. Ajouter</p>
                                 @endforelse
                                 {{-- Modal modify Candidates --}}
-                      <div class="modal fade" id="modifyCandidat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h1 class="modal-title fs-5" id="exampleModalLabel">Modification du candidat</h1>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                              <form id="candidate-modification-form">
-                                @csrf
-                                <input type="hidden" id="candidate_id" name="candidate_id" value="">
-                                  <div class="mb-3">
-                                    <label class="form-label" for="basic-default-fullname">Nom Complet</label>
-                                    <input type="text" class="form-control" name="fullnamem" id="fullnamem" value="" placeholder="Nom et Prenom Candidat" />
-                                  </div>
-                                  <div class="mb-3">
-                                    <label class="form-label" for="basic-default-email">Email</label>
-                                    <input type="mail" class="form-control" name="emailm" id="emailm" value="" placeholder="Email du Candidat" />
-                                  </div>
+                                <div class="modal fade" id="modifyCandidat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modification du candidat</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                      </div>
+                                      <div class="modal-body">
+                                        <form id="candidate-modification-form">
+                                          @csrf
+                                          <input type="hidden" id="candidate_id" name="candidate_id" value="">
+                                            <div class="mb-3">
+                                              <label class="form-label" for="basic-default-fullname">Nom Complet</label>
+                                              <input type="text" class="form-control" name="fullnamem" id="fullnamem" value="" placeholder="Nom et Prenom Candidat" />
+                                            </div>
+                                            <div class="mb-3">
+                                              <label class="form-label" for="basic-default-email">Email</label>
+                                              <input type="mail" class="form-control" name="emailm" id="emailm" value="" placeholder="Email du Candidat" />
+                                            </div>
 
-                                <button type="button" class="btn btn-primary" id="btn-modify-candidat">Modifier</button>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                              </form>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                                          <button type="button" class="btn btn-primary" id="btn-modify-candidat">Modifier</button>
+                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </form>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
                               </tbody>
                             </table>
                           </div>
@@ -239,13 +259,11 @@
             // console.log(formData);
             // console.log(Array.from(formData.keys()).length);
             formData.append("_token","{{ csrf_token() }}");
-            formData.append("election_id",jQuery('#election_id').val());
-            formData.append("fullname",jQuery('#fullname').val());
-            formData.append("email",jQuery('#email').val());
+            formData.append("election_id",$('#election_id').val());
             
             $.ajax({
                 type: "POST",
-                url:ajaxUrl,
+                url:"{{route('candidate.store')}}",
                 processData: false,
                 contentType: false,
                 data: formData,

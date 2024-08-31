@@ -48,7 +48,7 @@
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-closedate">Date Fermeture</label>
                             <input type="date" class="form-control @error('close_date') is-invalid @enderror" name="close_date" id="basic-default-closedate" value="{{ old('close_date')}}" placeholder="Date fermetture des votes" />
-                            @error('open_date')
+                            @error('close_date')
                               <div class="text-danger">{{ $message }}</div>
                             @enderror
                           </div>

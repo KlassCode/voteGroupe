@@ -29,5 +29,6 @@ Route::get('/election/create', [ElectionController::class, 'create'])->name('ele
 Route::post('/election/store', [ElectionController::class, 'store'])->name('election.store');
 
 Route::get('/election/{code}/edit', [ElectionController::class, 'edit'])->name('election.edit');
+Route::put('/election/{id}/update', [ElectionController::class, 'update'])->name('election.update');
 Route::post('/candidate/store', [CandidateController::class, 'store'])->name('candidate.store');
 Route::put('/candidate/update', [CandidateController::class, 'update'])->name('candidate.update');

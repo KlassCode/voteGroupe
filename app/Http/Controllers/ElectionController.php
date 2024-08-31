@@ -37,4 +37,18 @@ class ElectionController extends Controller
         $election = $this->electionService->searchElectionWithCode($code);
         return view('elections.edit', compact('election'));
     }
+
+    public function update($electionId, Request $request)
+    {
+        validator($request->all(), [
+            'title' => 'required',
+            'open_date' => 'required',
+            'close_date' => 'required',
+            'number_of_candidates' => 'required',
+        ])->validate();
+
+        if ($this->electionService->updateElectionInformation($electionId, $request->all())) {
+            return $this->edit($request->input('code'));
+        }
+    }
 }
