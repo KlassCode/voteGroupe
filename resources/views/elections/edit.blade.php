@@ -280,9 +280,11 @@
                     
                     if(data.message == 'success'){
                       // show success message and redirect
-                      setTimeout(function(){
-                        location.reload();
-                      }, 3000); // 3000 milliseconds = 3 seconds
+                      // Add loading spinner
+                      location.reload();
+                      // setTimeout(function(){
+                        
+                      // }, 3000); // 3000 milliseconds = 3 seconds
                     }else{
                       console.log("No");
                         // tata.error('error', 'Error in creating your business');

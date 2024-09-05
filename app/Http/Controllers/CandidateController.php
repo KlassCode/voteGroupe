@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CandidatureInvitationMail;
 use Illuminate\Http\Request;
-use App\Services\CandidateService;
-use App\Services\ElectionService;
 use Ramsey\Uuid\Type\Integer;
+use App\Services\ElectionService;
+use App\Services\CandidateService;
+use Illuminate\Support\Facades\Mail;
 
 class CandidateController extends Controller
 {
@@ -27,7 +29,8 @@ class CandidateController extends Controller
             'email' => 'required|',
         ])->validate();
 
-        if ($this->candidateService->addNewCandidate($request->all())) {
+        if ($candidate = $this->candidateService->addNewCandidate($request->all())) {
+            Mail::to($request->email)->send(new CandidatureInvitationMail($candidate));
             return response()->json([
                 "message" => "success",
             ]);
@@ -60,4 +63,6 @@ class CandidateController extends Controller
             return redirect()->back();
         }
     }
+
+    public function candidateConfirm() {}
 }

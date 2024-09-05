@@ -33,3 +33,4 @@ Route::put('/election/{id}/update', [ElectionController::class, 'update'])->name
 Route::post('/candidate/store', [CandidateController::class, 'store'])->name('candidate.store');
 Route::put('/candidate/update', [CandidateController::class, 'update'])->name('candidate.update');
 Route::delete('/candidate/{id}/delete', [CandidateController::class, 'delete'])->name('candidate.delete');
+Route::post('/candidate/{id}/confirm', [CandidateController::class, 'candidateConfirm'])->name('candidate.confirm');
