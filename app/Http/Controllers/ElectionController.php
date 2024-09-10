@@ -51,4 +51,10 @@ class ElectionController extends Controller
             return redirect()->route('election.edit', ['code' => $request->input('code')]);
         }
     }
+
+    public function fetchAllElections()
+    {
+        $elections = $this->electionService->getUserElections(auth()->user());
+        return view('elections.list', compact('elections'));
+    }
 }

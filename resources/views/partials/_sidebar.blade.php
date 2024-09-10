@@ -84,7 +84,7 @@
       
 
       <li class="menu-item">
-        <a href="#" class="menu-link">
+        <a href="{{route('election.list')}}" class="menu-link">
           <i class="menu-icon tf-icons bx bxs-box"></i>
           <div data-i18n="Elections">Elections</div>
         </a>

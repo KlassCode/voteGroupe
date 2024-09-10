@@ -48,4 +48,9 @@ class ElectionService
         }
         return $this->electionRepository->updateElection($electionId, $dataToUpdate);
     }
+
+    public function getUserElections($user)
+    {
+        return $this->electionRepository->getAllElections($user);
+    }
 }
