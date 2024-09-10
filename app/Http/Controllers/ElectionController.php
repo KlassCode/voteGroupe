@@ -57,4 +57,10 @@ class ElectionController extends Controller
         $elections = $this->electionService->getUserElections(auth()->user());
         return view('elections.list', compact('elections'));
     }
+    public function delete($id)
+    {
+        if ($this->electionService->removeElection($id)) {
+            return redirect()->back();
+        }
+    }
 }

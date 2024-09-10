@@ -51,4 +51,9 @@ class ElectionRepository
         Log::info("ElectionRepository::getAllElections()");
         return $this->model->where('user_id', $user->id)->get()->reverse();
     }
+    public function deleteElection($id)
+    {
+        Log::info("ElectionRepository::deleteElection()");
+        return $this->model->where('id', $id)->delete();
+    }
 }

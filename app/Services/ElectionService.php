@@ -53,4 +53,8 @@ class ElectionService
     {
         return $this->electionRepository->getAllElections($user);
     }
+    public function removeElection($electionId)
+    {
+        return $this->electionRepository->deleteElection($electionId);
+    }
 }
