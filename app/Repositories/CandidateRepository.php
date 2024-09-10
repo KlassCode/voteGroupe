@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\User;
 use App\Models\Candidate;
 use Illuminate\Support\Facades\Log;
 
@@ -9,10 +10,12 @@ class CandidateRepository
 {
 
     protected Candidate $model;
+    protected User $modelUser;
 
-    public function __construct(Candidate $candidate)
+    public function __construct(Candidate $candidate, User $modelUser)
     {
         $this->model = $candidate;
+        $this->modelUser = $modelUser;
     }
 
     public function saveElectionCandidate($dataToSave)
@@ -33,6 +36,12 @@ class CandidateRepository
         return $this->model->where('code', '=', $code)->first();
     }
 
+    public function findCandidate($id)
+    {
+        Log::info("CandidateRepository::findCandidate()");
+        return $this->model->findOrFail($id);
+    }
+
     public function updateCandidate($dataToUpdate)
     {
         Log::info("CandidateRepository::updateCandidate()");
@@ -42,5 +51,16 @@ class CandidateRepository
     {
         Log::info("CandidateRepository::deleteCandidate()");
         return $this->model->where('id', $id)->delete();
+    }
+    public function enableCandidateParticipation($id)
+    {
+        Log::info("CandidateRepository::enableCandidateParticipation()");
+        return $this->model->where('id', $id)->update(["participation_confirm" => 1]);
+    }
+
+    public function isCandidateRegistred($email)
+    {
+        Log::info("CandidateRepository::isCandidateRegistred()");
+        return $this->modelUser->where('email', $email)->first();
     }
 }

@@ -142,8 +142,12 @@
                                 @forelse ( $election->candidates as $candidate)
                                 <tr>
                                   <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{$candidate->fullname}}</strong></td>
+                                  @if ($candidate->participation_confirm)
+                                    <td><span class="badge bg-label-success me-1">Confirmer</span></td>
+                                  @else
+                                    <td><span class="badge bg-label-danger me-1">Pas Confirmer</span></td>
+                                  @endif
                                   
-                                  <td><span class="badge bg-label-danger me-1">Pas Confirm</span></td>
                                   <td>
                                     <span class="d-flex">
                                         <a class="dropdown-item open-ModifyCandidateDialog" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#modifyCandidat" data-id={{$candidate->id}} data-fullname="{{$candidate->fullname}}" data-email="{{$candidate->email}}"

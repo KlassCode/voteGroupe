@@ -99,15 +99,26 @@
                         </span>
                     @enderror
                 </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">E-mail</label>
-                    <input type="email" id="email" placeholder="Entrez votre e-mail" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                    @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
+                <h4>{{$email ?? ''}}</h4>
+                @isset($email)
+                <h4>{{$email}}</h4>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">E-mail</label>
+                        <input type="email" id="email" class="form-control" name="email" value="" disabled autocomplete="email">
+                    </div> 
+                @endisset
+                @empty($email)
+                    <div class="mb-3">
+                        <label for="email" class="form-label">E-mail</label>
+                        <input type="email" id="email" placeholder="Entrez votre e-mail" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                @endempty
+                
               <div class="mb-3">
                 <label for="password" class="form-label">Mot de passe</label>
                 <input type="password" id="password" placeholder="Entrez votre mot de passe" class="form-control @error('password') is-invalid @enderror" name="password" required>
@@ -125,7 +136,7 @@
                 <button type="submit" class="btn btn-primary">
                     {{ __('register') }}
                 </button>
-                <a class="btn btn-link" href="{{route('register')}}">
+                <a class="btn btn-link" href="{{route('login')}}">
                     Se Connecter
                 </a>
                 

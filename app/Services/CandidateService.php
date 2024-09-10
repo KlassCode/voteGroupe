@@ -30,4 +30,16 @@ class CandidateService
     {
         return $this->candidateRepository->deleteCandidate($candidateId);
     }
+    public function confirmElectionInvite($candidateId)
+    {
+        return $this->candidateRepository->enableCandidateParticipation($candidateId);
+    }
+    public function searchCandidate($candidateId)
+    {
+        return $this->candidateRepository->findCandidate($candidateId);
+    }
+    public function isAlreadyUser($candidateEmail)
+    {
+        return $this->candidateRepository->isCandidateRegistred($candidateEmail);
+    }
 }

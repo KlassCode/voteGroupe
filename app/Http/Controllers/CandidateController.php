@@ -64,5 +64,17 @@ class CandidateController extends Controller
         }
     }
 
-    public function candidateConfirm() {}
+    public function candidateConfirm($id)
+    {
+        $candidate = $this->candidateService->searchCandidate($id);
+        $email = $candidate->email;
+        if (
+            $this->candidateService->confirmElectionInvite($candidate->id) &&
+            !$this->candidateService->isAlreadyUser($candidate->email)
+        ) {
+            return redirect()->route('register');
+        } else {
+            return redirect()->route('login');
+        }
+    }
 }
