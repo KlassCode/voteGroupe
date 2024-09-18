@@ -64,6 +64,7 @@ class CandidateController extends Controller
         }
     }
 
+    // not finish
     public function candidateConfirm($id)
     {
         $candidate = $this->candidateService->searchCandidate($id);
@@ -76,5 +77,10 @@ class CandidateController extends Controller
         } else {
             return redirect()->route('login');
         }
+    }
+    public function fetchAllUserCandidature()
+    {
+        $candidatures = $this->candidateService->getAllCandidature(auth()->user());
+        return view('candidates.candidatures', compact('candidatures'));
     }
 }

@@ -42,4 +42,8 @@ class CandidateService
     {
         return $this->candidateRepository->isCandidateRegistred($candidateEmail);
     }
+    public function getAllCandidature($user)
+    {
+        return $this->candidateRepository->findAllCandidatureWithMail($user->email);
+    }
 }

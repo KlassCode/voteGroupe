@@ -63,4 +63,9 @@ class CandidateRepository
         Log::info("CandidateRepository::isCandidateRegistred()");
         return $this->modelUser->where('email', $email)->first();
     }
+    public function findAllCandidatureWithMail($userEmail)
+    {
+        Log::info("CandidatureRepository::findAllCandidatureWithMail()");
+        return $this->model->where('email', $userEmail)->get();
+    }
 }

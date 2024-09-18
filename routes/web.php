@@ -3,6 +3,7 @@
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ElectionController;
+use App\Models\Candidate;
 use App\Models\Election;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -36,3 +37,4 @@ Route::post('/candidate/store', [CandidateController::class, 'store'])->name('ca
 Route::put('/candidate/update', [CandidateController::class, 'update'])->name('candidate.update');
 Route::delete('/candidate/{id}/delete', [CandidateController::class, 'delete'])->name('candidate.delete');
 Route::get('/candidate/{id}/confirm', [CandidateController::class, 'candidateConfirm'])->name('candidate.confirm');
+Route::get('/candidature/all', [CandidateController::class, 'fetchAllUserCandidature'])->name('candidature.list');
