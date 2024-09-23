@@ -1,57 +1,7 @@
 @extends('layouts.app_dashboard')
 @section('content')
 
-  {{-- <div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-lg-6 col-md-8 col-sm-10">
-        <div class="row">
-          <div class="col-lg-6 col-md-6 col-sm-6">
-            <img src="assets/img/blog/Article-1.jpg" alt="Image de connexion" class="img-fluid">
-          </div>
-          <div class="col-lg-6 col-md-6 col-sm-6">
-            <h2 class="mb-4">Connexion</h2>
-            <form method="POST" action="{{ route('login') }}">
-                @csrf
-              <div class="mb-3">
-                <label for="email" class="form-label">E-mail</label>
-                <input type="email" id="email" placeholder="Entrez votre e-mail" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                @error('email')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-              <div class="mb-3">
-                <label for="password" class="form-label">Mot de passe</label>
-                <input type="password" id="password" placeholder="Entrez votre mot de passe" class="form-control @error('password') is-invalid @enderror" name="password" required>
-                @error('password')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-                </div>
-                <button type="submit" class="btn btn-primary">
-                    {{ __('Login') }}
-                </button>
-                <a class="btn btn-link" href="{{route('register')}}">
-                    Creer un compte
-                </a>
-                @if (Route::has('password.request'))
-                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                        {{ __('Forgot Your Password?') }}
-                    </a>
-                @endif
-              <button type="button" class="btn btn-danger mt-3">Connexion avec Google</button>
-                
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> --}}
- 
-
-  <div class="container d-flex justify-content-center">
+<div class="container d-flex justify-content-center">
     <div class="authentication-wrapper authentication-basic container-p-y">
       <div class="authentication-inner">
         <!-- Register -->
