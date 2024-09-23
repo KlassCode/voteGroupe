@@ -81,6 +81,7 @@ class CandidateController extends Controller
     public function fetchAllUserCandidature()
     {
         $candidatures = $this->candidateService->getAllCandidature(auth()->user());
-        return view('candidates.candidatures', compact('candidatures'));
+        // dd($candidatures[0]->election->where('id', $candidatures[0]->election_id));
+        return view('candidates.candidatures')->with('candidatures', $candidatures);
     }
 }

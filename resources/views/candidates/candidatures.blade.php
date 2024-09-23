@@ -41,9 +41,9 @@
                                             ><i class="bx bx-edit-alt me-1"></i></a
                                             > --}}
                                             @if ($candidate->participation_confirm)
-                                                <button type="button" class="btn rounded-pill btn-info btn-sm candidate-view" data-id={{$candidate->id}} data-fullname="{{$candidate->fullname}}" data-email="{{$candidate->email}}" data-participation={{$candidate->participation_confirm}} data-election="{{$candidate->election_id}}">Voir</button>
+                                                <button type="button" class="btn rounded-pill btn-info btn-sm candidate-view" data-id={{$candidate->id}} data-fullname="{{$candidate->fullname}}" data-email="{{$candidate->email}}" data-participation={{$candidate->participation_confirm}} data-election="{{$candidate->election->title}}">Voir</button>
                                             @else
-                                            <button type="button" class="btn rounded-pill btn-warning btn-sm candidate-view" data-id={{$candidate->id}} data-fullname="{{$candidate->fullname}}" data-email="{{$candidate->email}}" data-participation={{$candidate->participation_confirm}} data-election="{{$candidate->election_id}}">Confirmer</button>
+                                            <button type="button" class="btn rounded-pill btn-warning btn-sm candidate-view" data-id={{$candidate->id}} data-fullname="{{$candidate->fullname}}" data-email="{{$candidate->email}}" data-participation={{$candidate->participation_confirm}} data-election="{{$candidate->election->title}}">Confirmer</button>
                                             @endif
                                             
                                             <form action="{{route('election.delete',$candidate->id)}}" method="post">
