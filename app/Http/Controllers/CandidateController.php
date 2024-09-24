@@ -81,7 +81,21 @@ class CandidateController extends Controller
     public function fetchAllUserCandidature()
     {
         $candidatures = $this->candidateService->getAllCandidature(auth()->user());
+        $candidatesInfos = [];
+        foreach ($candidatures as $candidate) {
+            # code...
+            $election = $this->electionService->searchElectionById($candidate->election_id);
+            array_push($candidatesInfos, [
+                "id" => $candidate->id,
+                "fullname" => $candidate->fullname,
+                "email" => $candidate->email,
+                "participation" => $candidate->participation_confirm,
+                "election_id" => $candidate->election_id,
+                "election" => $election,
+            ]);
+        }
+
         // dd($candidatures[0]->election->where('id', $candidatures[0]->election_id));
-        return view('candidates.candidatures')->with('candidatures', $candidatures);
+        return view('candidates.candidatures')->with('candidatures', $candidatesInfos);
     }
 }

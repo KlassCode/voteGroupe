@@ -35,6 +35,11 @@ class ElectionRepository
         Log::info("ElectionRepository::findElectionBycode()");
         return $this->model->where('code', '=', $code)->first();
     }
+    public function findElectionById($id)
+    {
+        Log::info("ElectionRepository::findElectionById()");
+        return $this->model->findOrFail($id);
+    }
 
     public function updateElection($electionId, $data)
     {
@@ -50,6 +55,11 @@ class ElectionRepository
     {
         Log::info("ElectionRepository::getAllElections()");
         return $this->model->where('user_id', $user->id)->get()->reverse();
+    }
+    public function ifElectionArchived($id)
+    {
+        Log::info("ElectionRepository::ifElectionArchived()");
+        return $this->model->where('id', $id)->where('deleted_at', NULL)->first();
     }
     public function deleteElection($id)
     {

@@ -39,7 +39,10 @@ class ElectionService
     {
         return $this->electionRepository->findElectionByCode($codeElection);
     }
-
+    public function searchElectionById($id)
+    {
+        return $this->electionRepository->findElectionById($id);
+    }
     public function updateElectionInformation($electionId, $dataToUpdate)
     {
         $election = $this->searchElectionWithCode($dataToUpdate["code"]);

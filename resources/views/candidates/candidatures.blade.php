@@ -21,7 +21,7 @@
                                 <table class="table">
                                 <thead class="table-light">
                                     <tr>
-                                    <th>Nom Candidat</th>
+                                    <th>ELection</th>
                                     <th>Participe ?</th>    
                                     <th>Action</th>
                                     </tr>
@@ -29,8 +29,8 @@
                                 <tbody class="table-border-bottom-0">
                                     @forelse ( $candidatures as $candidate)
                                     <tr>
-                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{$candidate->fullname}}</strong></td>
-                                    @if ($candidate->participation_confirm)
+                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{$candidate["election"]->title}}</strong></td>
+                                    @if ($candidate["participation"])
                                         <td><span class="badge bg-label-success me-1">Oui</span></td>
                                     @else
                                         <td><span class="badge bg-label-danger me-1">Non</span></td>
@@ -40,13 +40,13 @@
                                             {{-- <a class="dropdown-item" href="{{route('election.edit',$candidate->id)}}"
                                             ><i class="bx bx-edit-alt me-1"></i></a
                                             > --}}
-                                            @if ($candidate->participation_confirm)
-                                                <button type="button" class="btn rounded-pill btn-info btn-sm candidate-view" data-id={{$candidate->id}} data-fullname="{{$candidate->fullname}}" data-email="{{$candidate->email}}" data-participation={{$candidate->participation_confirm}} data-election="{{$candidate->election->title}}">Voir</button>
+                                            @if ($candidate["participation"])
+                                                <button type="button" class="btn rounded-pill btn-info btn-sm candidate-view" data-id={{$candidate['id']}} data-fullname="{{$candidate['fullname']}}" data-email="{{$candidate['email']}}" data-participation={{$candidate['participation']}} data-election="{{$candidate["election"]->title}}">Voir</button>
                                             @else
-                                            <button type="button" class="btn rounded-pill btn-warning btn-sm candidate-view" data-id={{$candidate->id}} data-fullname="{{$candidate->fullname}}" data-email="{{$candidate->email}}" data-participation={{$candidate->participation_confirm}} data-election="{{$candidate->election->title}}">Confirmer</button>
+                                                <button type="button" class="btn rounded-pill btn-warning btn-sm candidate-view" data-id={{$candidate['id']}} data-fullname="{{$candidate['fullname']}}" data-email="{{$candidate['email']}}" data-participation={{$candidate['participation']}} data-election="{{$candidate["election"]->title}}">Confirmer</button>
                                             @endif
                                             
-                                            <form action="{{route('election.delete',$candidate->id)}}" method="post">
+                                            <form action="{{route('election.delete',$candidate['id'])}}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="dropdown-item"
@@ -58,7 +58,7 @@
                                     
                                     </tr>
                                     @empty
-                                    <p>Pas d'election. Ajouter</p>
+                                    <p>Pas de Candidature</p>
                                     @endforelse
                                 
                                 </tbody>
@@ -138,7 +138,6 @@
                                             <label class="form-label" for="basic-default-fullname">Nom Complet</label>
                                             <input type="text" class="form-control" name="fullname" id="fullname"/>
                                         </div>  
-    
                                         <button type="button" class="btn btn-primary" id="btn-participation-confirm">Je participe</button>
                                   </form>
                                 </div>
@@ -180,12 +179,14 @@
             $("#email").val(myCandidateEmail);
             $("#election-title").val(myCandidateElection);
             $("#candidate-card").removeClass("d-none");
+            $("#btn-participation-confirm").removeClass('d-none');
             console.log("Hello")
         }else{
             //give the view where candidate can view his progressin in election
             $("#fullname").val(myCandidateName);
             $("#email").val(myCandidateEmail);
             $("#election-title").val(myCandidateElection);
+            $("#btn-participation-confirm").addClass('d-none');
             $("#candidate-card").removeClass("d-none");
             console.log("Hello")
         }

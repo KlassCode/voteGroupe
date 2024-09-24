@@ -44,6 +44,14 @@ class CandidateService
     }
     public function getAllCandidature($user)
     {
-        return $this->candidateRepository->findAllCandidatureWithMail($user->email);
+        $candidatures = $this->candidateRepository->findAllCandidatureWithMail($user->email);
+        $validCandidatures = [];
+        foreach ($candidatures as $candidate) {
+            # code...
+            if ($this->electionRepository->ifElectionArchived($candidate->election_id)) {
+                array_push($validCandidatures, $candidate);
+            }
+        }
+        return $validCandidatures;
     }
 }
