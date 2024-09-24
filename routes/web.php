@@ -37,4 +37,6 @@ Route::post('/candidate/store', [CandidateController::class, 'store'])->name('ca
 Route::put('/candidate/update', [CandidateController::class, 'update'])->name('candidate.update');
 Route::delete('/candidate/{id}/delete', [CandidateController::class, 'delete'])->name('candidate.delete');
 Route::get('/candidate/{id}/confirm', [CandidateController::class, 'candidateConfirm'])->name('candidate.confirm');
+Route::post('/candidate/approuve', [CandidateController::class, 'candidateApprouve'])->name('candidate.approuve');
+
 Route::get('/candidature/all', [CandidateController::class, 'fetchAllUserCandidature'])->name('candidature.list');

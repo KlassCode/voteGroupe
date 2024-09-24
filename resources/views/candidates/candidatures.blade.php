@@ -123,9 +123,10 @@
                             <div class="card shadow-none text-start bg-transparent border border-info m-3">
                                 <div class="card-body">
                                   <h5 class="card-title">Informations</h5>
-                                  <form id="add-candidate-form">
+                                  <form id="add-candidate-form" method="POST" action="{{route('candidate.approuve')}}">
                                         @csrf
-                                        <input type="hidden" id="election_id" name="election_id" value="">
+                                        <input type="hidden" id="election-id" name="election_id" value="">
+                                        <input type="hidden" id="candidature-id" name="id" value="">
                                         <div class="mb-1">
                                             <label class="form-label" for="basic-default-email">Election</label>
                                             <input type="mail" class="form-control" name="election" id="election-title" disabled/>
@@ -138,7 +139,7 @@
                                             <label class="form-label" for="basic-default-fullname">Nom Complet</label>
                                             <input type="text" class="form-control" name="fullname" id="fullname"/>
                                         </div>  
-                                        <button type="button" class="btn btn-primary" id="btn-participation-confirm">Je participe</button>
+                                        <button type="submit" class="btn btn-primary" id="btn-participation-confirm">Je participe</button>
                                   </form>
                                 </div>
                             </div>
@@ -176,6 +177,7 @@
         if(myCandidateParticipation==0){
             //give the view where candidate can modify his information and confirm his participation
             $("#fullname").val(myCandidateName);
+            $("#candidature-id").val(myCandidateId);
             $("#email").val(myCandidateEmail);
             $("#election-title").val(myCandidateElection);
             $("#candidate-card").removeClass("d-none");
@@ -185,6 +187,7 @@
             //give the view where candidate can view his progressin in election
             $("#fullname").val(myCandidateName);
             $("#email").val(myCandidateEmail);
+            $("#candidate-id").val(myCandidateId);
             $("#election-title").val(myCandidateElection);
             $("#btn-participation-confirm").addClass('d-none');
             $("#candidate-card").removeClass("d-none");

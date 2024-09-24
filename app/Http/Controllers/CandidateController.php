@@ -78,6 +78,16 @@ class CandidateController extends Controller
             return redirect()->route('login');
         }
     }
+
+    public function candidateApprouve(Request $request)
+    {
+        validator($request->all(), [
+            'fullname' => 'required|',
+        ])->validate();
+        if ($this->candidateService->approuveCandidature($request->id, $request->fullname)) {
+            return redirect()->back();
+        }
+    }
     public function fetchAllUserCandidature()
     {
         $candidatures = $this->candidateService->getAllCandidature(auth()->user());

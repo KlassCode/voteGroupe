@@ -34,6 +34,10 @@ class CandidateService
     {
         return $this->candidateRepository->enableCandidateParticipation($candidateId);
     }
+    public function approuveCandidature($candidateId, $fullname)
+    {
+        return $this->candidateRepository->UpdateInformationAndParticipation($candidateId, $fullname);
+    }
     public function searchCandidate($candidateId)
     {
         return $this->candidateRepository->findCandidate($candidateId);

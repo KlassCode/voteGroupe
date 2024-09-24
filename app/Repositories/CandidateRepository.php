@@ -58,6 +58,11 @@ class CandidateRepository
         return $this->model->where('id', $id)->update(["participation_confirm" => 1]);
     }
 
+    public function UpdateInformationAndParticipation($id, $fullname)
+    {
+        Log::info("CandidateRepository::UpdateInformationAndParticipation()");
+        return $this->model->where('id', $id)->update(["participation_confirm" => 1, "fullname" => $fullname]);
+    }
     public function isCandidateRegistred($email)
     {
         Log::info("CandidateRepository::isCandidateRegistred()");
