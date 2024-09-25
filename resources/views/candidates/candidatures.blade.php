@@ -41,9 +41,9 @@
                                             ><i class="bx bx-edit-alt me-1"></i></a
                                             > --}}
                                             @if ($candidate["participation"])
-                                                <button type="button" class="btn rounded-pill btn-info btn-sm candidate-view" data-id={{$candidate['id']}} data-fullname="{{$candidate['fullname']}}" data-email="{{$candidate['email']}}" data-participation={{$candidate['participation']}} data-election="{{$candidate["election"]->title}}">Voir</button>
+                                                <button type="button" class="btn rounded-pill btn-info btn-sm candidate-view" data-id={{$candidate['id']}} data-avatar="{{$candidate['avatar']}}" data-fullname="{{$candidate['fullname']}}" data-email="{{$candidate['email']}}" data-participation={{$candidate['participation']}} data-election="{{$candidate["election"]->title}}">Voir</button>
                                             @else
-                                                <button type="button" class="btn rounded-pill btn-warning btn-sm candidate-view" data-id={{$candidate['id']}} data-fullname="{{$candidate['fullname']}}" data-email="{{$candidate['email']}}" data-participation={{$candidate['participation']}} data-election="{{$candidate["election"]->title}}">Confirmer</button>
+                                                <button type="button" class="btn rounded-pill btn-warning btn-sm candidate-view" data-id={{$candidate['id']}} data-avatar="{{$candidate['avatar']}}" data-fullname="{{$candidate['fullname']}}" data-email="{{$candidate['email']}}" data-participation={{$candidate['participation']}} data-election="{{$candidate["election"]->title}}">Confirmer</button>
                                             @endif
                                             
                                             <form action="{{route('election.delete',$candidate['id'])}}" method="post">
@@ -92,9 +92,9 @@
                             </div>
                             
                             <div class="card-body">
-                                <div class="d-flex align-items-start align-items-sm-center gap-4">
+                                <div class="d-lg-flex align-items-start align-items-sm-center gap-4">
                                     <img
-                                      src="{{asset('assets/img/dashboard/1.png')}}"
+                                      src=""
                                       alt="user-avatar"
                                       class="d-block rounded"
                                       height="100"
@@ -102,19 +102,22 @@
                                       id="uploadedAvatar"
                                     />
                                     <div class="button-wrapper">
-                                      <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                                        <span class="d-none d-sm-block">Ajouter une photo</span>
-                                        <i class="bx bx-upload d-block d-sm-none"></i>
-                                        <input
-                                          type="file"
-                                          id="upload"
-                                          class="account-file-input"
-                                          hidden
-                                          accept="image/png, image/jpeg"
-                                        />
-                                      </label>
+                                        <form id="avatar-upload-form">
+                                            <label for="file" class="btn btn-primary me-2 mb-4" tabindex="0">
+                                                <span class="d-none d-sm-block">Ajouter une photo</span>
+                                                <i class="bx bx-upload d-block d-sm-none"></i>
+                                                <input
+                                                type="file"
+                                                id="file"
+                                                name="file"
+                                                hidden
+                                                class="account-file-input"
+                                                accept="image/png, image/jpeg"
+                                                />
+                                            </label>
+                                        </form>
             
-                                      <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
+                                      {{-- <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p> --}}
                                     </div>
                                   </div>
                                     {{-- <a href="javascript:void(0)" class="btn btn-primary">Go somewhere</a> --}}
@@ -173,6 +176,7 @@
         let myCandidateEmail = $(this).data('email');
         let myCandidateElection = $(this).data('election');
         let myCandidateParticipation = $(this).data('participation')
+        let myCandidateAvatar = $(this).data("avatar");
         
         if(myCandidateParticipation==0){
             //give the view where candidate can modify his information and confirm his participation
@@ -180,6 +184,12 @@
             $("#candidature-id").val(myCandidateId);
             $("#email").val(myCandidateEmail);
             $("#election-title").val(myCandidateElection);
+            console.info(myCandidateAvatar)
+            if(myCandidateAvatar!=null){
+                $("#uploadedAvatar").attr("src","/storage/"+myCandidateAvatar);
+            }else{
+                $("#uploadedAvatar").attr("src","/assets/img/dashboard/1.png");
+            }
             $("#candidate-card").removeClass("d-none");
             $("#btn-participation-confirm").removeClass('d-none');
             console.log("Hello")
@@ -187,13 +197,53 @@
             //give the view where candidate can view his progressin in election
             $("#fullname").val(myCandidateName);
             $("#email").val(myCandidateEmail);
-            $("#candidate-id").val(myCandidateId);
+            $("#candidature-id").val(myCandidateId);
             $("#election-title").val(myCandidateElection);
             $("#btn-participation-confirm").addClass('d-none');
             $("#candidate-card").removeClass("d-none");
+            console.info(myCandidateAvatar)
+            if(myCandidateAvatar!=""){
+                $("#uploadedAvatar").attr("src","/storage/"+myCandidateAvatar);
+            }else{
+                $("#uploadedAvatar").attr("src","/assets/img/dashboard/1.png");
+            }
             console.log("Hello")
         }
     });
+
+    $(document).on("change",".account-file-input", function(event){
+        console.log("works");
+        uploadCandidateAvatar(event);
+    });
+    
+    function uploadCandidateAvatar(event){
+        console.info("candidatures::uploadCandidateAvatar")
+        var files = event.target.files;
+        var formData = new FormData();
+        formData.append("_token","{{csrf_token()}}");
+        formData.append("file",files[0]);
+        formData.append("candidateId",$("#candidature-id").val());
+        var ajaxUrl = "{{route('candidate.avatar.update')}}";
+
+        $.ajax({
+            type: "POST",
+            url:ajaxUrl,
+            processData: false,
+            contentType: false,
+            data: formData,
+            dataType: 'json',
+            success: function (data){
+                console.log(data);
+                if(data.status=="success"){
+                    location.reload();
+                }
+            },
+            error: function(error){
+                // 
+            }
+        })
+        
+    }
     
 </script>
 @endpush

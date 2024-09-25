@@ -15,6 +15,7 @@ class CreateCandidatesTable extends Migration
     {
         Schema::create('candidates', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('avatar')->nullable();
             $table->string("fullname");
             $table->string("email");
             $table->integer("number_of_votes");
