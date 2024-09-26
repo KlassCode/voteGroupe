@@ -63,4 +63,9 @@ class ElectionController extends Controller
             return redirect()->back();
         }
     }
+    public function displayAllPublicElection()
+    {
+        $elections = $this->electionService->getPublicElections();
+        return view('elections.vcspace', compact('elections'));
+    }
 }

@@ -76,7 +76,7 @@
       </li>
 
       <li class="menu-item">
-        <a href="#" class="menu-link">
+        <a href="{{route('election.public.list')}}" class="menu-link">
           <i class="menu-icon tf-icons bx bxl-squarespace"></i>
           <div data-i18n="vcspace">VC space</div>
         </a>

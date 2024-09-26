@@ -51,7 +51,7 @@ class ElectionRepository
             "number_of_candidates" => $data["number_of_candidates"],
         ]);
     }
-    public function getAllElections($user)
+    public function getAllUserElections($user)
     {
         Log::info("ElectionRepository::getAllElections()");
         return $this->model->where('user_id', $user->id)->get()->reverse();
@@ -65,5 +65,10 @@ class ElectionRepository
     {
         Log::info("ElectionRepository::deleteElection()");
         return $this->model->where('id', $id)->delete();
+    }
+    public function getElections()
+    {
+        Log::info("ElectionRepository::getElections()");
+        return $this->model->all();
     }
 }
