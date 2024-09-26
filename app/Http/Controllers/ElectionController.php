@@ -68,4 +68,9 @@ class ElectionController extends Controller
         $elections = $this->electionService->getPublicElections();
         return view('elections.vcspace', compact('elections'));
     }
+    public function show($code)
+    {
+        $election = $this->electionService->searchElectionWithCode($code);
+        return view('elections.show', compact('election'));
+    }
 }

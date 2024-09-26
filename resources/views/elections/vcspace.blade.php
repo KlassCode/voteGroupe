@@ -11,9 +11,6 @@
            <!-- Content wrapper -->
           <div class="">
             <!-- Content -->
-            @foreach ($elections as $election)
-                
-            @endforeach
             <div class="container-xxl flex-grow-1 container-p-y">
                 <div class="row">
                     <div class="col-lg-8 mb-4 order-0">
@@ -37,7 +34,7 @@
                                                 <div class="d-flex flex-sm-column flex-row align-items-start justify-content-between">
                                                     <h3 class="mb-0">{{$election->total_votes_received}} votes</h3>
                                                     
-                                                    <a href="" class="btn btn-sm rounded-pill btn-primary">
+                                                    <a href="{{route('election.public.show', $election->code)}}" class="btn btn-sm rounded-pill btn-primary">
                                                         <span class="tf-icons bx bx-pie-chart-alt"></span>&nbsp; vote
                                                     </a>
                                                     

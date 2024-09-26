@@ -33,6 +33,8 @@ Route::put('/election/{id}/update', [ElectionController::class, 'update'])->name
 Route::get('/election/all', [ElectionController::class, 'fetchAllElections'])->name('election.list');
 Route::delete('/election/{id}/delete', [ElectionController::class, 'delete'])->name('election.delete');
 Route::get('/election/vote', [ElectionController::class, 'displayAllPublicElection'])->name('election.public.list');
+Route::get('/election/{code}/show', [ElectionController::class, 'show'])->name('election.public.show');
+
 
 Route::post('/candidate/store', [CandidateController::class, 'store'])->name('candidate.store');
 Route::put('/candidate/update', [CandidateController::class, 'update'])->name('candidate.update');
