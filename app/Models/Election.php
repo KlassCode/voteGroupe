@@ -36,4 +36,8 @@ class Election extends Model
     {
         return $this->hasMany(Candidate::class);
     }
+    public function visitors(): HasMany
+    {
+        return $this->hasMany(Visitor::class);
+    }
 }

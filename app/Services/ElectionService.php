@@ -7,15 +7,20 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Expr\Cast\String_;
 use App\Repositories\ElectionRepository;
+use App\Repositories\VisitorRepository;
 
 class ElectionService
 {
 
     protected ElectionRepository $electionRepository;
+    protected VisitorRepository $visitorRepository;
 
-    public function __construct(ElectionRepository $electionRepository)
-    {
+    public function __construct(
+        ElectionRepository $electionRepository,
+        VisitorRepository $visitorRepository
+    ) {
         $this->electionRepository = $electionRepository;
+        $this->visitorRepository = $visitorRepository;
     }
 
     public function saveBasicElectionInformation($basicInformations)
@@ -63,5 +68,18 @@ class ElectionService
     public function getPublicElections()
     {
         return $this->electionRepository->getElections();
+    }
+    public function saveVisit($electionId, $request)
+    {
+        $visitorData = [
+            "userAgent" => "MyAgent",
+            "ipAddress" => "192.168.0.1",
+            "electionId" => $electionId,
+        ];
+        return $this->visitorRepository->storeVisit($visitorData);
+    }
+    public function getElectionVisitorsNumber($electionId)
+    {
+        return $this->visitorRepository->countVisitors($electionId);
     }
 }
