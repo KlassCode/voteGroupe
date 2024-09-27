@@ -71,4 +71,9 @@ class ElectionRepository
         Log::info("ElectionRepository::getElections()");
         return $this->model->all();
     }
+    public function updateTotalsReceivedVotes($election)
+    {
+        $election->total_votes_received += 1;
+        return $election->save();
+    }
 }

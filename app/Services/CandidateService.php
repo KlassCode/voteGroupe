@@ -75,6 +75,9 @@ class CandidateService
         if ($savedVote) {
             $nbVotes = $candidate->number_of_votes + 1;
             $this->candidateRepository->updateVoteNumbers($candidate->id, $nbVotes);
+            $election = $candidate->election;
+            $election->total_votes_received += 1;
+            $election->save();
             return true;
         }
         return false;
