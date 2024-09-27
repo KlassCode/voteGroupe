@@ -4,17 +4,24 @@ namespace App\Services;
 
 use App\Repositories\ElectionRepository;
 use App\Repositories\CandidateRepository;
+use App\Repositories\VoteRepository;
 
 class CandidateService
 {
 
     protected ElectionRepository $electionRepository;
     protected CandidateRepository $candidateRepository;
+    protected VoteRepository $voteRepository;
 
-    public function __construct(ElectionRepository $electionRepository, CandidateRepository $candidateRepository)
-    {
+
+    public function __construct(
+        ElectionRepository $electionRepository,
+        CandidateRepository $candidateRepository,
+        VoteRepository $voteRepository
+    ) {
         $this->electionRepository = $electionRepository;
         $this->candidateRepository = $candidateRepository;
+        $this->voteRepository = $voteRepository;
     }
 
     public function addNewCandidate($data)
@@ -61,7 +68,15 @@ class CandidateService
     public function newVote($candidateId)
     {
         $candidate = $this->candidateRepository->findCandidate($candidateId);
-        $nbVotes = $candidate->number_of_votes + 1;
-        return $this->candidateRepository->updateVoteNumbers($candidate->id, $nbVotes);
+        $savedVote = $this->voteRepository->storeVote([
+            "userId" => auth()->user()->id,
+            "candidateId" => $candidate->id,
+        ]);
+        if ($savedVote) {
+            $nbVotes = $candidate->number_of_votes + 1;
+            $this->candidateRepository->updateVoteNumbers($candidate->id, $nbVotes);
+            return true;
+        }
+        return false;
     }
 }
