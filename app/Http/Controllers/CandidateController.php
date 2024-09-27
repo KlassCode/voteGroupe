@@ -146,4 +146,10 @@ class CandidateController extends Controller
             'avatar_url' => NULL
         ]);
     }
+    public function addVote($candidateId, Request $request)
+    {
+        if ($this->candidateService->newVote($candidateId)) {
+            return redirect()->back();
+        }
+    }
 }

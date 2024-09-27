@@ -73,4 +73,9 @@ class CandidateRepository
         Log::info("CandidatureRepository::findAllCandidatureWithMail()");
         return $this->model->where('email', $userEmail)->get();
     }
+    public function updateVoteNumbers($candidateId, $nbVotes)
+    {
+        Log::info("CandidatureRepository::updateVoteNumbers()");
+        return $this->model->where('id', $candidateId)->update(["number_of_votes" => $nbVotes]);
+    }
 }

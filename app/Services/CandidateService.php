@@ -58,4 +58,10 @@ class CandidateService
         }
         return $validCandidatures;
     }
+    public function newVote($candidateId)
+    {
+        $candidate = $this->candidateRepository->findCandidate($candidateId);
+        $nbVotes = $candidate->number_of_votes + 1;
+        return $this->candidateRepository->updateVoteNumbers($candidate->id, $nbVotes);
+    }
 }

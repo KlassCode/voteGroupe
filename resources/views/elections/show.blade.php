@@ -84,9 +84,8 @@
                                         <span class="d-block mb-1 fw-bold">{{$candidate->fullname}}</span>
                                         <h4 class="card-title text-nowrap fw-light mb-2">{{$candidate->number_of_votes}} votes</h4>
                                         <small class="text-danger fw-semibold"><i class="bx bx-down-arrow-alt"></i> -14.82%</small>
-                                        <form action="{" method="post">
+                                        <form action="{{route('candidate.vote.add',$candidate->id)}}" method="post">
                                             @csrf
-                                            @method('delete')
                                             <button type="submit" class="btn btn-sm rounded-pill btn-info">
                                                 <span class="tf-icons bx bx-pie-chart-alt"></span>&nbsp;Vote</button>
                                             </form>
