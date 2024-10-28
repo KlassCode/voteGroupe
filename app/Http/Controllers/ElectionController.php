@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\ElectionService;
 use Illuminate\Http\Request;
+use DateTime;
 
 class ElectionController extends Controller
 {
@@ -65,8 +66,24 @@ class ElectionController extends Controller
     }
     public function displayAllPublicElection()
     {
+        $electionsDatas = [];
         $elections = $this->electionService->getPublicElections();
-        return view('elections.vcspace', compact('elections'));
+
+        foreach ($elections as $election) {
+            # code...
+            array_push($electionsDatas, [
+                "title" => $election->title,
+                "code" => $election->code,
+                "status" => $election->status,
+                "open_date" => $election->open_date,
+                "close_date" => $election->close_date,
+                'number_of_candidates' => $election->number_of_candidates,
+                'user_id' => $election->user_id,
+                'total_votes_received' => $election->total_votes_received,
+                "days" => $this->daysBetweenDates($election->close_date, $election->open_date),
+            ]);
+        }
+        return view('elections.vcspace', compact('electionsDatas'));
     }
     public function show($code, Request $request)
     {
@@ -75,5 +92,14 @@ class ElectionController extends Controller
         $visitorsNumber = $this->electionService->getElectionVisitorsNumber($election->id);
 
         return view('elections.show', compact('election', 'visitorsNumber'));
+    }
+    public function daysBetweenDates($date1, $date2)
+    {
+
+        $datetime1 = new DateTime($date1);
+        $datetime2 = new DateTime($date2);
+        $interval = $datetime1->diff($datetime2);
+        $days = $interval->format('%a'); //now do whatever you like with $days
+        return $days;
     }
 }

@@ -17,24 +17,24 @@
                         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span>Vote now</h4>
                         <div class="row">
                             
-                            @foreach ($elections as $election)
+                            @foreach ($electionsDatas as $election)
                                 <div class="col-md-6 mb-4">
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="d-flex justify-content-between flex-sm-row flex-column gap-3">
                                             <div class="d-flex flex-sm-column flex-row align-items-start justify-content-between">
                                                 <div class="card-title">
-                                                <h5 class="text-nowrap mb-2">{{$election->title}}</h5>
-                                                <span class="badge bg-label-warning rounded-pill">Year 2021</span>
+                                                <h5 class="text-nowrap mb-2">{{$election["title"]}}</h5>
+                                                <span class="badge bg-label-warning rounded-pill">{{ $election["days"] }} jour(s)</span>
                                                 </div>
                                                 <div class="mt-sm-auto">
                                                 <small class="text-success text-nowrap fw-semibold"
                                                     ><i class="bx bx-chevron-up"></i> 68.2%</small
                                                 >
                                                 <div class="d-flex flex-sm-column flex-row align-items-start justify-content-between">
-                                                    <h3 class="mb-0">{{$election->total_votes_received}} votes</h3>
+                                                    <h3 class="mb-0">{{$election["total_votes_received"]}} votes</h3>
                                                     
-                                                    <a href="{{route('election.public.show', $election->code)}}" class="btn btn-sm rounded-pill btn-primary">
+                                                    <a href="{{route('election.public.show', $election["code"])}}" class="btn btn-sm rounded-pill btn-primary">
                                                         <span class="tf-icons bx bx-pie-chart-alt"></span>&nbsp; vote
                                                     </a>
                                                     
