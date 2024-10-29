@@ -84,11 +84,6 @@ class ElectionController extends Controller
                 "days" => $this->daysBetweenDates($election->close_date, $election->open_date),
             ]);
         }
-        $filtered_collection = Election::all()->filter(function ($item) {
-            return $this->checkExpiredElections($item->close_date);
-        })->values()->toQuery()->update(["status" => Election::CLOSE]);
-
-
 
         return view('elections.vcspace', compact('electionsDatas'));
     }

@@ -24,9 +24,16 @@
                                             <div class="d-flex justify-content-between flex-sm-row flex-column gap-3">
                                             <div class="d-flex flex-sm-column flex-row align-items-start justify-content-between">
                                                 <div class="card-title">
-                                                <h5 class="text-nowrap mb-2">{{$election["title"]}}</h5>
+                                                <h5 class="text-nowrap mb-2">{{$election["title"]}}
+                                                    @if ($election["status"]=="Fermer")
+                                                        <span class="badge bg-label-danger rounded-pill">close</span> 
+                                                    @endif
+                                                    @if ($election["status"]=="En ligne")
+                                                        <span class="badge bg-label-success rounded-pill">close</span> 
+                                                    @endif  
+                                                </h5>
                                                 <h6 class="text-muted mb-2">{{$election["open_date"]}} | {{$election["close_date"]}}</h6>
-                                                <span class="badge bg-label-warning rounded-pill">{{ $election["days"] }} jour(s)</span>
+                                                <span class="badge bg-label-warning rounded-pill">Duree : {{ $election["days"] }} jour(s)</span>
                                                 </div>
                                                 <div class="mt-sm-auto">
                                                 <small class="text-success text-nowrap fw-semibold"
@@ -36,7 +43,12 @@
                                                     <h3 class="mb-0">{{$election["total_votes_received"]}} votes</h3>
                                                     
                                                     <a href="{{route('election.public.show', $election["code"])}}" class="btn btn-sm rounded-pill btn-primary">
-                                                        <span class="tf-icons bx bx-pie-chart-alt"></span>&nbsp; vote
+                                                        <span class="tf-icons bx bx-pie-chart-alt"></span>&nbsp; 
+                                                        @if ($election["status"]=="Fermer")
+                                                            Voir Resultats
+                                                        @else
+                                                            vote
+                                                        @endif 
                                                     </a>
                                                     
                                                 </div>
