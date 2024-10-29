@@ -25,8 +25,8 @@ class ElectionController extends Controller
     {
         validator($request->all(), [
             'title' => 'required',
-            'open_date' => 'required',
-            'close_date' => 'required',
+            'open_date' => 'required|after:now',
+            'close_date' => 'required|after:open_date',
             'number_of_candidates' => 'required|integer|between:1,10',
         ])->validate();
         $election = $this->electionService->saveBasicElectionInformation($request->all());
@@ -44,8 +44,8 @@ class ElectionController extends Controller
     {
         validator($request->all(), [
             'title' => 'required',
-            'open_date' => 'required',
-            'close_date' => 'required',
+            'open_date' => 'required|after:now',
+            'close_date' => 'required|after:open_date',
             'number_of_candidates' => 'required|integer|between:1,10',
         ])->validate();
 
