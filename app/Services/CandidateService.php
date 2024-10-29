@@ -2,9 +2,11 @@
 
 namespace App\Services;
 
+use App\Models\Election;
+use App\Models\Candidate;
+use App\Repositories\VoteRepository;
 use App\Repositories\ElectionRepository;
 use App\Repositories\CandidateRepository;
-use App\Repositories\VoteRepository;
 
 class CandidateService
 {
@@ -43,7 +45,15 @@ class CandidateService
     }
     public function approuveCandidature($candidateId, $fullname)
     {
-        return $this->candidateRepository->UpdateInformationAndParticipation($candidateId, $fullname);
+        if ($this->candidateRepository->UpdateInformationAndParticipation($candidateId, $fullname)) {
+            $candidate = $this->candidateRepository->findCandidate($candidateId);
+            $election = $this->electionRepository->findElectionById($candidate->election_id);
+            $candidatesCount = Candidate::where("participation_confirm", true)->where("election_id", $candidate->election_id)->count();
+
+            if ($election->number_of_candidates == $candidatesCount) {
+                return $this->electionRepository->changeElectionStatus($election->id, Election::ONLINE);
+            }
+        }
     }
     public function searchCandidate($candidateId)
     {
@@ -75,9 +85,7 @@ class CandidateService
         if ($savedVote) {
             $nbVotes = $candidate->number_of_votes + 1;
             $this->candidateRepository->updateVoteNumbers($candidate->id, $nbVotes);
-            $election = $candidate->election;
-            $election->total_votes_received += 1;
-            $election->save();
+            $this->electionRepository->updateTotalsReceivedVotes($candidate->election);
             return true;
         }
         return false;

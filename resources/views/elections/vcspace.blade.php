@@ -26,10 +26,10 @@
                                                 <div class="card-title">
                                                 <h5 class="text-nowrap mb-2">{{$election["title"]}}
                                                     @if ($election["status"]=="Fermer")
-                                                        <span class="badge bg-label-danger rounded-pill">close</span> 
+                                                        <span class="badge bg-label-danger rounded-pill">Fermer</span> 
                                                     @endif
                                                     @if ($election["status"]=="En ligne")
-                                                        <span class="badge bg-label-success rounded-pill">close</span> 
+                                                        <span class="badge bg-label-success rounded-pill">Active</span> 
                                                     @endif  
                                                 </h5>
                                                 <h6 class="text-muted mb-2">{{$election["open_date"]}} | {{$election["close_date"]}}</h6>

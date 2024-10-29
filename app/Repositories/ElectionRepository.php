@@ -76,4 +76,9 @@ class ElectionRepository
         $election->total_votes_received += 1;
         return $election->save();
     }
+    public function changeElectionStatus($id, $status)
+    {
+        Log::info("ElectionRepository::changeElectionStatus()");
+        return $this->model->where("id", $id)->update(["status" => $status]);
+    }
 }
