@@ -25,6 +25,7 @@
                                             <div class="d-flex flex-sm-column flex-row align-items-start justify-content-between">
                                                 <div class="card-title">
                                                 <h5 class="text-nowrap mb-2">{{$election["title"]}}</h5>
+                                                <h6 class="text-muted mb-2">{{$election["open_date"]}} | {{$election["close_date"]}}</h6>
                                                 <span class="badge bg-label-warning rounded-pill">{{ $election["days"] }} jour(s)</span>
                                                 </div>
                                                 <div class="mt-sm-auto">

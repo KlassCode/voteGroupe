@@ -83,6 +83,7 @@ class ElectionController extends Controller
                 "days" => $this->daysBetweenDates($election->close_date, $election->open_date),
             ]);
         }
+
         return view('elections.vcspace', compact('electionsDatas'));
     }
     public function show($code, Request $request)
