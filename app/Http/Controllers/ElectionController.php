@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\ElectionService;
-use Illuminate\Http\Request;
 use DateTime;
+use App\Models\Election;
+use Illuminate\Http\Request;
+use App\Services\ElectionService;
 
 class ElectionController extends Controller
 {
@@ -83,8 +84,19 @@ class ElectionController extends Controller
                 "days" => $this->daysBetweenDates($election->close_date, $election->open_date),
             ]);
         }
+        $filtered_collection = Election::all()->filter(function ($item) {
+            return $this->checkExpiredElections($item->close_date);
+        })->values()->toQuery()->update(["status" => Election::CLOSE]);
+
+
 
         return view('elections.vcspace', compact('electionsDatas'));
+    }
+    public function checkExpiredElections($closeDate)
+    {
+        $today = (new DateTime())->format('Y-m-d'); //use format whatever you are using
+        $expiry = (new DateTime($closeDate))->format('Y-m-d');
+        return strtotime($today) > strtotime($expiry);
     }
     public function show($code, Request $request)
     {
