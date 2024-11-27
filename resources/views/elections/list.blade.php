@@ -15,7 +15,10 @@
             <div class="container-xxl flex-grow-1 container-p-y">
                 <div class="row">
                     <div class="col-lg-8 mb-4 order-0">
-                        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span>Mes Elections</h4>
+                        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span> <span>
+                            <a href="{{route('election.create')}}" class="btn btn-primary mb-1">Nouvelle Election</a>
+                        </span><br/>Mes Elections</h4>
+                           
                             <!-- Bootstrap Table with Header - Light -->
                             <div class="table-responsive text-nowrap">
                                 <table class="table">
