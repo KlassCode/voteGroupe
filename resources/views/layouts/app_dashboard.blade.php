@@ -48,8 +48,8 @@
         <script>
           document.write(new Date().getFullYear());
         </script>
-         | All right reserved
-        <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">Klass Code</a>
+         | Tous droits réservés
+        <a href="#" target="_blank" class="footer-link fw-bolder">Techno Go</a>
       </div>
     </div>
   </footer>
