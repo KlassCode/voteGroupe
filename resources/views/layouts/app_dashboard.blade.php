@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="{{asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')}}" />
 
     <link rel="stylesheet" href="{{asset('assets/vendor/libs/apex-charts/apex-charts.css')}}" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
 
     <script src="{{asset('assets/vendor/js/helpers.js')}}"></script>
 
@@ -86,6 +87,7 @@
 
   <!-- Template Main JS File -->
   <script src="{{asset('assets/js/script.js')}}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 
 @stack('after_script')
 </body>

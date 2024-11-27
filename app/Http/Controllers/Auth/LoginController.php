@@ -38,10 +38,16 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-    protected function sendFailedLoginResponse(Request $request)
-    {
-        throw ValidationException::withMessages([
-            'username or password is incorrect!!!'
-        ]);
-    }
+    // protected function sendFailedLoginResponse(Request $request)
+    // {
+    //     throw ValidationException::withMessages([
+    //         'email or password is incorrect!!!'
+    //     ]);
+    //     $notification = array(
+    //         'message' => 'email/password incorrect!!',
+    //         'alert-type' => 'danger'
+    //     );
+
+    //     return redirect()->route('register')->with($notification);
+    // }
 }

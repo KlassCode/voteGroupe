@@ -5,6 +5,9 @@
 @section('content')
 
 <div class="container d-flex justify-content-center">
+  @if(Session::has('message'))
+    toastr.error("{{ Session::get('message') }}");
+@endif
     <div class="authentication-wrapper authentication-basic container-p-y">
       <div class="authentication-inner">
         <!-- Register -->
