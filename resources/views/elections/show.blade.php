@@ -16,7 +16,7 @@
                     <div class="col-lg-7 mb-4 order-0">
                         <div class="d-flex flex-row align-items-center justify-content-start">
                             <h4 class="py-3 mb-4"><span class="text-muted fw-bold">{{$election->title}}</span></h4>
-                            <span class="badge bg-label-success mb-4 rounded-pill">En ligne</span>
+                            {{-- <span class="badge bg-label-info mb-4 ml-2 rounded-pill">{{$election->status}}</span> --}}
                         </div>
 
                         <div class="card">
@@ -84,11 +84,18 @@
                                         <span class="d-block mb-1 fw-bold">{{$candidate->fullname}}</span>
                                         <h4 class="card-title text-nowrap fw-light mb-2">{{$candidate->number_of_votes}} votes</h4>
                                         <small class="text-danger fw-semibold"><i class="bx bx-down-arrow-alt"></i> -14.82%</small>
-                                        <form action="{{route('candidate.vote.add',$candidate->id)}}" method="post">
+                                        @if ($election->status=="Active")
+                                          <form action="{{route('candidate.vote.add',$candidate->id)}}" method="post">
                                             @csrf
                                             <button type="submit" class="btn btn-sm rounded-pill btn-info">
-                                                <span class="tf-icons bx bx-pie-chart-alt"></span>&nbsp;Vote</button>
-                                            </form>
+                                                <span class="tf-icons bx bx-pie-chart-alt"></span>&nbsp;
+                                                Vote
+                                              </button>
+                                          </form>    
+                                        @endif
+
+                                        
+                                        
                                     </div>
                                     </div>
                                 </div>

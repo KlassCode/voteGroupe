@@ -28,7 +28,7 @@
                                                     @if ($election["status"]=="Fermer")
                                                         <span class="badge bg-label-danger rounded-pill">Fermer</span> 
                                                     @endif
-                                                    @if ($election["status"]=="En ligne")
+                                                    @if ($election["status"]=="Active")
                                                         <span class="badge bg-label-success rounded-pill">Active</span> 
                                                     @endif  
                                                 </h5>

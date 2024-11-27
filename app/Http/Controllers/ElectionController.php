@@ -98,7 +98,9 @@ class ElectionController extends Controller
         $election = $this->electionService->searchElectionWithCode($code);
         $this->electionService->saveVisit($election->id, $request);
         $visitorsNumber = $this->electionService->getElectionVisitorsNumber($election->id);
-
+        $finalClassment = $this->electionService->getFinalClassement($election);
+        // ksort($finalClassment, SORT_NUMERIC);
+        // dd($finalClassment);
         return view('elections.show', compact('election', 'visitorsNumber'));
     }
     public function daysBetweenDates($date1, $date2)

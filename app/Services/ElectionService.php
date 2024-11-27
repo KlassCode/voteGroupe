@@ -2,12 +2,13 @@
 
 namespace App\Services;
 
+use App\Models\Vote;
 use App\Models\Election;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Expr\Cast\String_;
-use App\Repositories\ElectionRepository;
 use App\Repositories\VisitorRepository;
+use App\Repositories\ElectionRepository;
 
 class ElectionService
 {
@@ -81,5 +82,14 @@ class ElectionService
     public function getElectionVisitorsNumber($electionId)
     {
         return $this->visitorRepository->countVisitors($electionId);
+    }
+    public function getFinalClassement($election)
+    {
+        $arrayClassement = [];
+        foreach ($election->candidates as $candidate) {
+            $candidateVote = Vote::where('candidate_id', $candidate->id)->count();
+            array_push($arrayClassement, [$candidate->fullname => $candidateVote]);
+        }
+        return $arrayClassement;
     }
 }

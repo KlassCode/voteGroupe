@@ -25,7 +25,7 @@ class Election extends Model
 
     const CREATE = "creation";
     const WAIT_VALIDATION = "En attente";
-    const ONLINE = "En ligne";
+    const ONLINE = "Active";
     const CLOSE = "Fermer";
 
     public function user(): BelongsTo
