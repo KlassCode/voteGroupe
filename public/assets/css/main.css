@@ -214,6 +214,21 @@ section {
   }
 }
 
+.btn-index{
+  color: #ffff!important;
+  background-color: #FF8303;
+  border-color: #FF8303;
+  border-radius: 5px;
+  /* box-shadow: 0 0.125rem 0.25rem 0 rgba(105, 108, 255, 0.4); */
+}
+.btn-index:hover {
+  color: #fff;
+  background-color: #A35709;
+  border-color: #A35709;
+  transform: translateY(-1px);
+}
+
+
 /*--------------------------------------------------------------
 # Disable aos animation delay on mobile devices
 --------------------------------------------------------------*/
@@ -1892,7 +1907,7 @@ section {
   border-radius: 50px;
   transition: 0.3s;
   color: #fff;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--color-secondary);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
   border: 2px solid rgba(255, 255, 255, 0.1);
 }

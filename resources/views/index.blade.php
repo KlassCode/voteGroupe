@@ -16,8 +16,13 @@
           <p>Bienvenue sur notre plateforme en ligne dédiée à la création de communautés, à l'organisation de votes et à la 
             gestion des comités de classes pour les étudiants et les écoles !</p>
           <div class="d-flex justify-content-center justify-content-lg-start">
-            <a href="#about" class="btn-get-started">Nous Rejoindre</a>
-            <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Regarder</span></a>
+            @guest
+              <a href="{{route('register')}}" class="btn-get-started">Nous Rejoindre</a>
+            @endguest
+            @auth
+              <a href="{{route('dashboard.show')}}" class="btn-get-started">Mon Tableau de Bord</a>
+            @endauth
+            <a href="" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Regarder</span></a>
           </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2">

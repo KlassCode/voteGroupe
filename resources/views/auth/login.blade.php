@@ -1,4 +1,7 @@
 @extends('layouts.app_dashboard')
+@section("title")
+<title>VoteConnect | Connxion</title>
+@endsection
 @section('content')
 
 <div class="container d-flex justify-content-center">

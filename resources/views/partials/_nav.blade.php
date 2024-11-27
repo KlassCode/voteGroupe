@@ -1,6 +1,6 @@
 
 <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-    <a href="index.html" class="logo d-flex align-items-center">
+    <a href="{{route("accueil")}}" class="logo d-flex align-items-center">
       <!-- Uncomment the line below if you also wish to use an image logo -->
       <!-- <img src="assets/img/logo.png" alt=""> -->
       <h1>Vote Connect<span>.</span></h1>
@@ -32,13 +32,13 @@
         </li> --}}
         <li><a href="#contact" class="mr-2">Contact</a></li>
         @guest
-          <a class="btn btn-info" role="button" href="{{ route('login') }}">Connexion</a>
+          <a class="btn-index m-1" role="button" href="{{ route('login') }}">Connexion</a>
         @endguest
 
         @auth
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <button type="submit" class="btn">Deconnexion</button>
+                <button type="submit" class="btn btn-index">Deconnexion</button>
             </form>
         @endauth
 
